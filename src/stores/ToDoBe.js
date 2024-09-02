@@ -9,27 +9,19 @@ export const useTodoStore = defineStore("todo", {
   }),
   actions: {
     async fetchTasks(page = 1) {
-      try {
-        const response = await axios.get(
-          `https://jsonplaceholder.typicode.com/todos?_page=${page}`
-        );
-        this.tasks = response.data;
-        this.totalPages = Math.ceil(response.headers["x-total-count"] / 10);
-      } catch (error) {
-        console.error("Error fetching tasks:", error);
-      }
+      const response = await axios.get(
+        `https://jsonplaceholder.typicode.com/posts?_page=${page}`
+      );
+      this.tasks = response.data;
+      this.totalPages = Math.ceil(response.headers["x-total-count"] / 10); // Adjust the count per page if needed
     },
 
     async addTask(task) {
-      try {
-        const response = await axios.post(
-          "https://jsonplaceholder.typicode.com/todos",
-          task
-        );
-        this.tasks.push(response.data);
-      } catch (error) {
-        console.error("Error adding task:", error);
-      }
+      const response = await axios.post(
+        "https://jsonplaceholder.typicode.com/posts",
+        task
+      );
+      this.tasks.push(response.data);
     },
 
     async deleteTask(taskId) {
