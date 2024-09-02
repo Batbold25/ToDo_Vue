@@ -27,7 +27,7 @@ export const useTodoStore = defineStore("todo", {
     async deleteTask(taskId) {
       try {
         await axios.delete(
-          `https://jsonplaceholder.typicode.com/todos/${taskId}`
+          `https://jsonplaceholder.typicode.com/posts/${taskId}`
         );
         this.tasks = this.tasks.filter((task) => task.id !== taskId);
       } catch (error) {
